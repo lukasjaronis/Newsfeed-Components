@@ -93,7 +93,7 @@ const data = [
 
 
 
-  <div class="article">
+  <div class="articles">
     <h2>{title of the article}</h2>
     <p class="date">{date of the article}</p>
 
@@ -116,6 +116,15 @@ const data = [
 
 */
 
+/*
+
+const articles = document.querySelector('.articles');
+
+data.forEach(d => {
+  articles.appendChild(createArticle(d.title, d.date, d.firstParagraph, d.secondParagraph, d.thirdParagraph));
+})
+
+
 
 function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
 
@@ -131,24 +140,44 @@ const articleDate = create('p');
 const articleParagraphFirst = create('p');
 const articleParagraphSecond = create('p');
 const articleParagraphThird = create('p');
-const articleBtn = create('span');
+const articleBtnExpand = create('button');
+const articleBtnClose = create('button')
 
 article.appendChild(articleTitle);
 article.appendChild(articleDate);
 article.appendChild(articleParagraphFirst);
 article.appendChild(articleParagraphSecond);
 article.appendChild(articleParagraphThird);
-article.appendChild(articleBtn);
+article.appendChild(articleBtnExpand);
+article.appendChild(articleBtnClose); // maybe has to append to the expanded button? like to the span?
 
 // class setup
 
 article.classList.add('.article');
 articleDate.classList.add('.date');
-articleBtn.classList.add('.expandButton');
+articleBtnExpand.classList.add('.expandButton');
+articleBtnClose.classList.add('.close');
+
+// set text
+
+articleTitle.textContent = title;
+articleDate.textContent = date;
+articleParagraphFirst = firstParagraph;
+articleParagraphSecond = secondParagraph;
+articleParagraphThird = thirdParagraph;
 
 
+// button event
+
+articleBtnExpand.addEventListener('click', () => {
+
+  articleBtnExpand.classList.toggle('expandButton');
+  articleBtnClose.classList.toggle('close');
+
+})
 
 
-
-
+return article;
 }
+
+*/
