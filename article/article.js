@@ -116,13 +116,13 @@ const data = [
 
 */
 
-/*
 
-const articles = document.querySelector('.articles');
 
-data.forEach(d => {
-  articles.appendChild(createArticle(d.title, d.date, d.firstParagraph, d.secondParagraph, d.thirdParagraph));
-})
+let articles = document.querySelector('.articles');
+
+data.forEach(thisdata => {
+articles.appendChild(createArticle(thisdata.title, thisdata.date, thisdata.firstParagraph, thisdata.secondParagraph, thisdata.thirdParagraph));
+});
 
 
 
@@ -131,53 +131,55 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
 
 // define new elements
 
-const create = element => document.createElement(element);
+let create = element => document.createElement(element);
 
 
-const article = create('div');
-const articleTitle = create('h2');
-const articleDate = create('p');
-const articleParagraphFirst = create('p');
-const articleParagraphSecond = create('p');
-const articleParagraphThird = create('p');
-const articleBtnExpand = create('button');
-const articleBtnClose = create('button')
+let article = create('div');
+let articleTitle = create('h2');
+let articleDate = create('p');
+let articleArticleDiv = create('div');
+let articleParagraphFirst = create('p');
+let articleParagraphSecond = create('p');
+let articleParagraphThird = create('p');
+let articleBtnExpand = create('span');
+let articleBtnOpen = create('button');
+let articleBtnClose = create('button');
+
 
 article.appendChild(articleTitle);
 article.appendChild(articleDate);
-article.appendChild(articleParagraphFirst);
-article.appendChild(articleParagraphSecond);
-article.appendChild(articleParagraphThird);
+article.appendChild(articleArticleDiv);
+articleArticleDiv.appendChild(articleParagraphFirst);
+articleArticleDiv.appendChild(articleParagraphSecond);
+articleArticleDiv.appendChild(articleParagraphThird);
 article.appendChild(articleBtnExpand);
-article.appendChild(articleBtnClose); // maybe has to append to the expanded button? like to the span?
-
+articleBtnExpand.appendChild(articleBtnOpen); 
+articleBtnExpand.appendChild(articleBtnClose);
 // class setup
 
 article.classList.add('.article');
 articleDate.classList.add('.date');
 articleBtnExpand.classList.add('.expandButton');
+articleBtnOpen.classList.add('.article-open');
 articleBtnClose.classList.add('.close');
 
 // set text
 
 articleTitle.textContent = title;
 articleDate.textContent = date;
-articleParagraphFirst = firstParagraph;
-articleParagraphSecond = secondParagraph;
-articleParagraphThird = thirdParagraph;
+articleParagraphFirst.textContent = firstParagraph;
+articleParagraphSecond.textContent = secondParagraph;
+articleParagraphThird.textContent = thirdParagraph;
 
 
 // button event
 
 articleBtnExpand.addEventListener('click', () => {
-
-  articleBtnExpand.classList.toggle('expandButton');
-  articleBtnClose.classList.toggle('close');
-
+  articleBtnOpen.classList.toggle('.article-open');
+  articleBtnClose.classList.toggle('.close');
 })
 
-
+console.log(article);
 return article;
-}
 
-*/
+}
