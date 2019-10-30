@@ -140,6 +140,12 @@ article.appendChild(articleParagraphSecond);
 article.appendChild(articleParagraphThird);
 article.appendChild(articleBtn);
 
+// class setup
+
+article.classList.add('.article');
+articleDate.classList.add('.date');
+articleBtn.classList.add('.expandButton');
+
 
 
 
