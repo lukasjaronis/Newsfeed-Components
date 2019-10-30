@@ -85,22 +85,6 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  },
-  {
-    title: 'Lukas Test',
-    date: 'Jan 1st, 2019',
-    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
-          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
-          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
-
-    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
-          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
-          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
-          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
-
-    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
-          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
-          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
@@ -157,10 +141,8 @@ let articleArticleDiv = create('div');
 let articleParagraphFirst = create('p');
 let articleParagraphSecond = create('p');
 let articleParagraphThird = create('p');
-let articleBtnPanel = create('div');
-let articleBtnExpand = create('span');
-let articleBtnOpen = create('button');
-let articleBtnClose = create('button');
+let articleBtnPanel = create('span');
+
 
 // structure
 article.appendChild(articleTitle);
@@ -170,16 +152,14 @@ articleArticleDiv.appendChild(articleParagraphFirst);
 articleArticleDiv.appendChild(articleParagraphSecond);
 articleArticleDiv.appendChild(articleParagraphThird);
 article.appendChild(articleBtnPanel);
-articleBtnPanel.appendChild(articleBtnExpand);
-articleBtnExpand.appendChild(articleBtnOpen); 
-articleBtnExpand.appendChild(articleBtnClose);
+
+
+
 // class setup
 
-article.classList.add('.article');
-articleDate.classList.add('.date');
-articleBtnExpand.classList.add('.expandButton');
-articleBtnOpen.classList.add('.article-open');
-articleBtnClose.classList.add('.close');
+article.classList.add('article');
+articleDate.classList.add('date');
+articleBtnPanel.classList.add('expandButton');
 
 // set text
 
@@ -188,13 +168,16 @@ articleDate.textContent = date;
 articleParagraphFirst.textContent = firstParagraph;
 articleParagraphSecond.textContent = secondParagraph;
 articleParagraphThird.textContent = thirdParagraph;
+articleBtnPanel.textContent = "Expand Me";
 
 
 // button event
 
-articleBtnExpand.addEventListener('click', () => {
-  articleBtnOpen.classList.toggle('article-open');
-  articleBtnClose.classList.toggle('close');
+articleBtnPanel.addEventListener('click', () => {
+
+  article.classList.toggle('article-open');
+  
+
 })
 
 console.log(article);
@@ -203,3 +186,16 @@ return article;
 }
 
 // step 4
+
+let artc = document.querySelector('.articles');
+
+data.map((item)=> {
+  return artc.appendChild(createArticle(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph))
+});
+
+
+// step 5
+
+const newArticle = createArticle("Lukas's New Article", "Wed Oct 30th", "Paragraph 1", "Paragraph2", "Paragraph3")
+
+artc.appendChild(newArticle);
