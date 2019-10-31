@@ -89,8 +89,11 @@ const data = [
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
-  
-  <div class="article">
+
+
+
+
+  <div class="articles">
     <h2>{title of the article}</h2>
     <p class="date">{date of the article}</p>
 
@@ -112,3 +115,87 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+
+
+let articles = document.querySelector('.articles');
+
+data.forEach(thisdata => {
+articles.appendChild(createArticle(thisdata.title, thisdata.date, thisdata.firstParagraph, thisdata.secondParagraph, thisdata.thirdParagraph));
+});
+
+
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+
+
+// define new elements
+
+let create = element => document.createElement(element);
+
+
+let article = create('div');
+let articleTitle = create('h2');
+let articleDate = create('p');
+let articleArticleDiv = create('div');
+let articleParagraphFirst = create('p');
+let articleParagraphSecond = create('p');
+let articleParagraphThird = create('p');
+let articleBtnPanel = create('span');
+
+
+// structure
+article.appendChild(articleTitle);
+article.appendChild(articleDate);
+article.appendChild(articleArticleDiv);
+articleArticleDiv.appendChild(articleParagraphFirst);
+articleArticleDiv.appendChild(articleParagraphSecond);
+articleArticleDiv.appendChild(articleParagraphThird);
+article.appendChild(articleBtnPanel);
+
+
+
+// class setup
+
+article.classList.add('article');
+articleDate.classList.add('date');
+articleBtnPanel.classList.add('expandButton');
+
+// set text
+
+articleTitle.textContent = title;
+articleDate.textContent = date;
+articleParagraphFirst.textContent = firstParagraph;
+articleParagraphSecond.textContent = secondParagraph;
+articleParagraphThird.textContent = thirdParagraph;
+articleBtnPanel.textContent = "Expand Me";
+
+
+// button event
+
+articleBtnPanel.addEventListener('click', () => {
+
+  article.classList.toggle('article-open');
+  
+
+})
+
+console.log(article);
+return article;
+
+}
+
+// step 4
+
+let artc = document.querySelector('.articles');
+
+data.map((item)=> {
+  return artc.appendChild(createArticle(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph))
+});
+
+
+// step 5
+
+const newArticle = createArticle("Lukas's New Article", "Wed Oct 30th", "Paragraph 1", "Paragraph2", "Paragraph3")
+
+artc.appendChild(newArticle);
